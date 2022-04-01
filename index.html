@@ -1,0 +1,132 @@
+<html>
+
+<head>
+    <title>Lambda Calculus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/index.js"></script>
+</head>
+
+<body>
+    <section class="container title-design">
+        <h2 class="main-title"><span>L</span>.<span>a</span>.<span>m</span>.<span>b</span>.<span>d</span>.<span>a</span>
+            Calculus</h2>
+        <h4 class="main-subtitle">The Origin of Functional Programming</h4>
+        <h4 class="main-subtitle">Author - Aye Chan Aung Thwin</h4>
+    </section>
+
+    <section class="container what-and-why">
+        <h3 class="title">Abstraction: What and Why?</h3>
+        <p>
+            Everything can be expressed as a function. But it shouldn't be used everywhere. Once it is populated with
+            arguments, its state cannot be changed. Therefore, you have to create another function if you ever once to
+            use the same function again. That creates more memory consumption. But the functional paradigm becomes
+            popular again because it gives good readability abstracted in a short code. There's also enough memory to
+            execute them nowadays.
+        </p>
+
+        <p>
+            This is the lower-level perspective of a programming language. You can say, "semantics of the functional
+            programming." So, you need to be an expert in one of the high-level programming languages. And you also need
+            to be a good problem solver. Otherwise, this is just wasting your time!
+        </p>
+
+        <p>
+            Now, you know what and why. And we're a bit behind the schedule. So, let's start learning it right now!
+        </p>
+    </section>
+
+    <section class="container what-is-a-function">
+        <h3 class="title">What is a function?</h3>
+        <p>A function is a black box where you can't see what's inside. If you wanna know if two functions do the same
+            thing, you have to put something in it and see if they give us the same result. Let's say there are two
+            functions; <span class="equation">f(x)=2x</span>, and <span class="equation">g(x)=x+x</span>, you can't know
+            if f(x) is equal g(x) without putting a value in it.</p>
+        <p><span class="equation">f(x)=2x</span>, <span class="equation">f(2)=2*2=4</span></p>
+        <p><span class="equation">g(x)=x+x</span>, <span class="equation">g(2)=2+2=4</span></p>
+        <p>Hence, <span class="equation">f(2)</span> is equal to <span class="equation">g(2)</span>.</p>
+    </section>
+
+    <section class="container birds">
+        <h3 class="title">Birds</h3>
+        <p>We represent a function with a bird. Each bird is a function. Each function can have one or more functions or
+            arguments inside it and we called them layers.</p>
+    </section>
+
+    <section class="container function">
+        <h3 class="title">Idiot</h3>
+        <p>This is the one layer bird. It takes only one argument and return it. It seems to have no intelligence at
+            all. That's why we called it, "Idiot" or "Identity." And we present it with "I."
+        </p>
+        <p>Half-circle on the left of the box represents a bird's ear and the right one represents its throat. The
+            dotted box encloses the solid line and one box represents one layer. The solid line is a pipe which shows the direction of
+            flow the information from ear to throat. Normally, it goes from left to right. We don't use arrow head
+            except to indicate reverse flow. <span class="fyi">FYI, ear to the throat is connected by a canal! The
+                Eustachian tube is a small passageway that connects your throat to your middle ear.</span></p>
+        <div class="animation-container">
+            <div class="screen">
+                <div class="bird-name code">I</div>
+                <div class="bird idiot">
+                    <div class="arrow arrow-idiot"></div>
+                </div>
+                <div class="input code">1</div>
+            </div>
+        </div>
+        <p>Just like <span class="equation">f(x)=x</span>, this one is <span class="equation">I(a)=a</span>. <span
+                class="equation">I</span> is a function that takes <span class="equation">a</span> as an argument and
+            returns <span class="equation">a</span>. It takes one argument and so Idiot is one-layered bird. You can try
+            it, with the syntax of JavaScript's arrow function in console of a browser.
+        </p>
+        <p class="code">let I = a => a;</p>
+        <p class="code">I(0) <span class="comment">//will return 0.</span></p>
+        <p class="code">I(1) <span class="comment">//will return 1.</span></p>
+        <p>
+
+        </p>
+    </section>
+
+    <section class="container function">
+        <h3 class="title">Kestrel</h3>
+        <p>It is the two layer bird. It takes two arguments and return the first one. If you put 1 and then 2, it will
+            only return 1. because the second argument has no connection from ear to throat. <span class="fyi">Note that pipes can be passed freely from outter box to inner box without having to pass through inner box's ear.</span></p>
+        <div class="animation-container">
+            <div class="screen">
+                <div class="bird-name code">K</div>
+                <div class="bird kestrel-layer-1">
+                </div>
+                <div class="bird kestrel-layer-2">
+                </div>
+                <div class="arrow arrow-kestrel-1"></div>
+                <!-- <div class="arrow arrow-kestrel-2"></div> -->
+                <div class="input kestrel-input-1 code">a</div>
+                <div class="input kestrel-input-2 code">b</div>
+            </div>
+        </div>
+        <p>You can try it, with the syntax of JavaScript's arrow function in console of a browser.
+        </p>
+        <p class="code">let K = a => b => a;</p>
+        <p class="code">K(0)(1) <span class="comment">//will return 0.</span></p>
+        <p class="code">K(1)(2) <span class="comment">//will return 1.</span></p>
+        <p>As you can see, Kestrel always return the first thing and so you can neglect the second one. Kestrel can be
+            used as a constant. For example, <span class="equation">K(3)</span> will always gives you back <span
+                class="equation">3</span>. That's called the constant. And we can create like this.</p>
+        <p class="code">
+            let K3 = K(3);
+        </p>
+        <p class="code">
+            K3 <span class="comment">//will return 3.</span>
+        </p>
+        <p>Forget about its syntax and look at the sequence that executes. Does it look familiar to you?</p>
+    </section>
+
+    <section class="container function">
+        <h3 class="title">True/False Function</h3>
+        <p>In the ternary operation of the high-level syntax, it will be like the following...</p>
+        <p class="code">boolean?value1:value2;</p>
+        <p>If <span class="equation">boolean</span> is true, it returns the first one; <span class="equation">value1</span>. So, <span class="equation">Kestrel</span> is the <span class="equation">TRUE function</span>. So, what's the <span class="equation">FALSE function</span>? It returns the second thing. Now, you get both TRUE and FALSE functions.</p>
+        <p class="code">let T = K;</p>
+        <p class="code">let F = a => b => b;</p>
+        <p></p>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,356 @@
+/* Created by - Aye Chan Aung Thwin */
+
+/* https://www.dafont.com/seven-segment.font */
+@font-face {
+    font-family: SevenSegFont;
+    src: url(../font/DSEG7ModernMini-Bold.ttf);
+}
+
+
+/* https://www.1001fonts.com/short-descenders-fonts.html */
+@font-face {
+    font-family: DaggerSquareFont;
+    src: url(../font/DAGGERSQUARE.otf);
+}
+
+/* https://all-free-download.com/font/download/zado_6919034.html */
+@font-face {
+    font-family: ZadoFont;
+    src: url(../font/Zado.ttf);
+}
+
+/* https://www.dafont.com/astronomus.font */
+@font-face {
+    font-family: AstroFont;
+    src: url(../font/Square\ One.ttf);
+}
+
+*,
+*::before,
+*::after {
+    bird-sizing: border-bird;
+}
+
+:root {
+    /* heading */
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 1.25rem;
+    --fs-h4: 0.7rem;
+    --fs-h5: 0.501rem;
+    --fs-h6: 0.4167rem;
+    --fs-body: 1rem;
+
+    /* fonts */
+    --ff-dagger-square-font: DaggerSquareFont;
+    --ff-dot-font: ZadoFont;
+    --ff-seven-seg-font: SevenSegFont;
+    --ff-astro-font: AstroFont;
+
+    --border-dark: 
+    -1px -1px 0 black,
+    0 -1px 0 black,
+    1px -1px 0 black,
+    1px 0 0 black,
+    1px 1px 0 black,
+    0 1px 0 black,
+    -1px 1px 0 black,
+    -1px 0 0 black;
+
+    --cl-1: #848484;
+    --cl-2: #2F586A;
+    --cl-3: #01B5D0;
+    --cl-4: #ED063E;
+    --cl-5: #FFAD26;
+    --cl-6: rgb(11, 150, 11);
+}
+
+@media (min-width: 700px) {
+    :root {
+        /* heading */
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.75rem;
+        --fs-h3: 1.5rem;
+        --fs-h4: 1rem;
+        --fs-h5: 0.75rem;
+        --fs-h6: 0.5rem;
+        --fs-body: 0.5rem;
+    }
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+h5 { font-size: var(--fs-h5); }
+h6 { font-size: var(--fs-h6); }
+
+body {
+    margin: 0 auto;
+    background: rgb(25, 25, 25);
+}
+
+section {
+    display: block;
+    margin: 3rem auto;
+    justify-content: center;
+}
+
+p {
+    margin: 0 auto;
+    text-indent: 2em;
+    line-height: 2rem;
+    text-align: justify;
+    color: white;
+}
+
+.code {
+    margin: 0 auto;
+    color: yellow;
+    text-shadow: var(--border-dark);
+
+    font-size: 1.25rem;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.equation {
+    color: green;
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: var(--border-dark);
+}
+
+.comment {
+    color: grey;
+    font-style: italic;
+    text-shadow: var(--border-dark);
+}
+
+.fyi {
+    color: var(--cl-4);
+    text-shadow: var(--border-dark);
+}
+
+.container {
+    display: block;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: var(--fs-h3);
+}
+
+.title-design {
+    display: block;
+    margin: 0 auto;
+}
+
+.title-design .main-title {
+    text-align: center;
+    margin: 0 auto;
+    font-family: var(--ff-dagger-square-font);
+    padding-top: 2rem;
+
+    color: white;
+
+    text-shadow: var(--border-dark);
+}
+
+.title-design .main-title span:nth-child(1) {
+    color: var(--cl-1);
+}
+
+.title-design .main-title span:nth-child(2) {
+    color: var(--cl-2);
+}
+
+.title-design .main-title span:nth-child(3) {
+    color: var(--cl-3);
+}
+
+.title-design .main-title span:nth-child(4) {
+    color: var(--cl-4);
+}
+
+.title-design .main-title span:nth-child(5) {
+    color: var(--cl-5);
+}
+
+.title-design .main-title span:nth-child(6) {
+    color: var(--cl-6);
+}
+
+.title-design .main-subtitle {
+    text-align: center;
+    margin: 0 auto;
+    font-family: var(--ff-dagger-square-font);
+    padding-bottom: 2rem;
+
+    color: white;
+
+    text-shadow: var(--border-dark);
+}
+
+.title {
+    display: inline;
+    padding: 2px;
+    /* background: yellow; */
+    color: white;
+    text-shadow: var(--border-dark);
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.animation-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem auto;
+}
+
+.screen {
+    position: relative;
+
+    width: 320px;
+    height: 180px;
+    border: 2px solid black;
+    background: #03414b;
+}
+
+.screen .bird-name {
+    position: absolute;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+.bird {
+    --bird-ear: 50;
+    --bird-throat: 50;
+
+    position: absolute;
+    width: 50%;
+    height: 50%;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 2px dashed black;
+
+    background: white;
+}
+
+.bird::before {
+    content:'';
+    position: absolute;
+    width: 25px;
+    height: 50px;
+
+    top: calc(var(--bird-ear) * 1%);
+    left: -14px;
+
+    transform: translate(-50%, -50%);
+    border-radius: 50px 0 0 50px;
+
+    background: black;
+}
+
+.bird::after {
+    content:'';
+    position: absolute;
+    width: 25px;
+    height: 50px;
+
+    top: calc(var(--bird-throat) * 1%);
+    right: -37.5px;
+
+    transform: translate(-50%, -50%);
+    border-radius: 0 50px 50px 0;
+
+    background: black;
+}
+
+.arrow {
+    --cl-arrow: black;
+
+    position: absolute;
+    width: 100%;
+    height: 2px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: var(--cl-arrow);
+}
+
+.input {
+    --left-to-right: 0;
+    --top-to-bottom: 50;
+
+    position: absolute;
+
+    top: 37%;
+    left: calc(var(--left-to-right) * 1%);
+
+    transform: translateX(calc(var(--left-to-right) * 1%)) translateY(calc(var(--top-to-bottom) * 1%));
+
+    text-shadow: var(--border-dark);
+}
+
+.kestrel-layer-1 {
+    width: 70%;
+    height: 70%;
+
+    --bird-ear: 30;
+    --bird-throat: 65;
+}
+
+.kestrel-layer-2 {
+    top: 60%;
+
+    width: 30%;
+    height: 30%;
+}
+
+.kestrel-input-1 {
+    top: 35%;
+}
+
+.kestrel-input-2 {
+    top: 50%;
+    --left-to-right: -20;
+}
+
+.arrow-kestrel-1 {
+    width: 36%;
+    top: 35%;
+
+    transform: translateX(-114px);
+
+    background: black;
+}
+
+.arrow-kestrel-1::before {
+    content:'';
+    display: block;
+    width: 40%;
+    height: 2px;
+
+    transform-origin: right;
+    transform: translateX(68px) rotate(270deg);
+
+    background: black;
+}
+
+.arrow-kestrel-1::after {
+    content:'';
+    display: block;
+    width: 100%;
+    height: 2px;
+
+    transform: translateX(114px) translateY(43px);
+
+    background: black;
+}
