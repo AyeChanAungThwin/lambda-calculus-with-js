@@ -193,7 +193,6 @@ p {
 .title {
     display: inline;
     padding: 2px;
-    /* background: yellow; */
     color: white;
     text-shadow: var(--border-dark);
     border-radius: 5px;
@@ -223,12 +222,13 @@ p {
 }
 
 .bird {
+    --bird-size: 50;
     --bird-ear: 50;
     --bird-throat: 50;
 
     position: absolute;
-    width: 50%;
-    height: 50%;
+    width: calc(var(--bird-size) * 1%);
+    height: calc(var(--bird-size) * 1%);
 
     top: 50%;
     left: 50%;
@@ -237,7 +237,7 @@ p {
 
     border: 2px dashed black;
 
-    background: white;
+    background: transparent;
 }
 
 .bird::before {
@@ -270,36 +270,84 @@ p {
     background: black;
 }
 
-.arrow {
-    --cl-arrow: black;
+.pipe {
+    --left-pipe-length: 50;
+}
 
+.left-pipe {
     position: absolute;
-    width: 100%;
+    width: calc(var(--left-pipe-length) * 1%);
     height: 2px;
 
-    top: 50%;
-    left: 50%;
+    top: calc(var(--bird-ear) * 1%);
+    transform: translateY(calc(var(--bird-ear) * -1%));
 
-    transform: translate(-50%, -50%);
+    background: black;
+}
 
-    background: var(--cl-arrow);
+.mid-pipe {
+    position: absolute;
+    width: 2px;
+    height: calc((var(--bird-throat) - var(--bird-ear)) * 1%);
+    
+    top: calc(var(--bird-ear) * 1%);
+
+    left: calc(var(--left-pipe-length) * 1%);
+    transform: translateX(-50%);
+
+    background: black;
+}
+
+.right-pipe {
+    position: absolute;
+    width: calc((100 - var(--left-pipe-length)) * 1%);
+    height: 2px;
+
+    right: 0;
+
+    top: calc(var(--bird-throat) * 1%);
+    transform: translateY(calc(var(--bird-throat) * -1%));
+
+    background: black;
+}
+
+.kestrel-a {
+    --bird-size: 70;
+    --bird-ear: 30;
+    --bird-throat: 65;
+}
+
+.kestrel-b {
+    top: 60%;
+    --bird-size: 30;
+}
+
+.kestrel-b .pipe {
+    display: none;
 }
 
 .input {
     --left-to-right: 0;
-    --top-to-bottom: 50;
+    --top-to-bottom: 44;
 
     position: absolute;
 
-    top: 37%;
+    top: calc(var(--top-to-bottom) * 1%);
     left: calc(var(--left-to-right) * 1%);
-
-    transform: translateX(calc(var(--left-to-right) * 1%)) translateY(calc(var(--top-to-bottom) * 1%));
 
     text-shadow: var(--border-dark);
 }
 
-.kestrel-layer-1 {
+.kestrel-input-a {
+    --top-to-bottom: 30;
+}
+
+.kestrel-input-b {
+    --top-to-bottom: 54;
+    --left-to-right: 20;
+}
+
+/* .kestrel-layer-1 {
     width: 70%;
     height: 70%;
 
@@ -347,10 +395,21 @@ p {
 .arrow-kestrel-1::after {
     content:'';
     display: block;
-    width: 100%;
+    width: 43%;
     height: 2px;
 
     transform: translateX(114px) translateY(43px);
 
     background: black;
 }
+
+.arrow-kestrel-2 {
+    width: 12%;
+    height: 2px;
+
+    top: 60%;
+
+    transform: translateX(190%);
+
+    background: black;
+} */

@@ -50,6 +50,19 @@
         <h3 class="title">Birds</h3>
         <p>We represent a function with a bird. Each bird is a function. Each function can have one or more functions or
             arguments inside it and we called them layers.</p>
+
+        <div class="animation-container">
+            <div class="screen">
+                <div class="bird-name code">Bird</div>
+                <div class="bird">
+                    <div class="pipe">
+                        <div class="left-pipe"></div>
+                        <div class="mid-pipe"></div>
+                        <div class="right-pipe"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="container function">
@@ -58,17 +71,24 @@
             all. That's why we called it, "Idiot" or "Identity." And we present it with "I."
         </p>
         <p>Half-circle on the left of the box represents a bird's ear and the right one represents its throat. The
-            dotted box encloses the solid line and one box represents one layer. The solid line is a pipe which shows the direction of
+            dotted box encloses the solid line and one box represents one layer. The solid line is a pipe which shows
+            the direction of
             flow the information from ear to throat. Normally, it goes from left to right. We don't use arrow head
             except to indicate reverse flow. <span class="fyi">FYI, ear to the throat is connected by a canal! The
                 Eustachian tube is a small passageway that connects your throat to your middle ear.</span></p>
+
         <div class="animation-container">
             <div class="screen">
                 <div class="bird-name code">I</div>
                 <div class="bird idiot">
-                    <div class="arrow arrow-idiot"></div>
+                    <div class="pipe">
+                        <div class="left-pipe"></div>
+                        <div class="mid-pipe"></div>
+                        <div class="right-pipe"></div>
+                    </div>
                 </div>
-                <div class="input code">1</div>
+
+                <div class="input idiot-input code">1</div>
             </div>
         </div>
         <p>Just like <span class="equation">f(x)=x</span>, this one is <span class="equation">I(a)=a</span>. <span
@@ -87,8 +107,35 @@
     <section class="container function">
         <h3 class="title">Kestrel</h3>
         <p>It is the two layer bird. It takes two arguments and return the first one. If you put 1 and then 2, it will
-            only return 1. because the second argument has no connection from ear to throat. <span class="fyi">Note that pipes can be passed freely from outter box to inner box without having to pass through inner box's ear.</span></p>
+            only return 1. because the second argument has no connection from ear to throat. <span class="fyi">Note that
+                pipes can be passed freely from outter box to inner box without having to pass through inner box's
+                ear.</span></p>
+
         <div class="animation-container">
+            <div class="screen">
+                <div class="bird-name kestrel code">K</div>
+                <div class="bird kestrel-a">
+                    <div class="pipe">
+                        <div class="left-pipe"></div>
+                        <div class="mid-pipe"></div>
+                        <div class="right-pipe"></div>
+                    </div>
+                </div>
+
+                <div class="bird kestrel-b">
+                    <div class="pipe">
+                        <div class="left-pipe"></div>
+                        <div class="mid-pipe"></div>
+                        <div class="right-pipe"></div>
+                    </div>
+                </div>
+
+                <div class="input kestrel-input-a code">a</div>
+                <div class="input kestrel-input-b code">b</div>
+            </div>
+        </div>
+
+        <!-- <div class="animation-container">
             <div class="screen">
                 <div class="bird-name code">K</div>
                 <div class="bird kestrel-layer-1">
@@ -96,11 +143,11 @@
                 <div class="bird kestrel-layer-2">
                 </div>
                 <div class="arrow arrow-kestrel-1"></div>
-                <!-- <div class="arrow arrow-kestrel-2"></div> -->
+                <div class="arrow arrow-kestrel-2"></div>
                 <div class="input kestrel-input-1 code">a</div>
                 <div class="input kestrel-input-2 code">b</div>
             </div>
-        </div>
+        </div> -->
         <p>You can try it, with the syntax of JavaScript's arrow function in console of a browser.
         </p>
         <p class="code">let K = a => b => a;</p>
@@ -122,10 +169,48 @@
         <h3 class="title">True/False Function</h3>
         <p>In the ternary operation of the high-level syntax, it will be like the following...</p>
         <p class="code">boolean?value1:value2;</p>
-        <p>If <span class="equation">boolean</span> is true, it returns the first one; <span class="equation">value1</span>. So, <span class="equation">Kestrel</span> is the <span class="equation">TRUE function</span>. So, what's the <span class="equation">FALSE function</span>? It returns the second thing. Now, you get both TRUE and FALSE functions.</p>
+        <p>If <span class="equation">boolean</span> is true, it returns the first one; <span
+                class="equation">value1</span>. So, <span class="equation">Kestrel</span> is the <span
+                class="equation">TRUE function</span>. So, what's the <span class="equation">FALSE function</span>? It
+            returns the second thing. Now, you get both TRUE and FALSE functions.</p>
         <p class="code">let T = K;</p>
+        <p>Now, you can create the FALSE function like the following.</p>
         <p class="code">let F = a => b => b;</p>
-        <p></p>
+        <p>But instead of manually creating a new function like the above, you can combine existing functions to create
+            a new one that gives us a new function.</p>
+    </section>
+
+    <section class="container function">
+        <h3 class="title">Kite</h3>
+        <p>What do we get if Kestrel heard an Idiot song? <span class="equation">K</span> will give us the first one and
+            so we just note the second one with <span class="equation">x</span>.</p>
+        <p class="equation">K(I)(x) = I</p>
+        <p>When we put <span class="equation">Idiot</span> as the first argument to <span
+                class="equation">Kestrel</span>, we will get an <span class="equation">Idiot</span> because it returns
+            the first thing. But <span class="equation">Idiot</span> can take one argument.</p>
+        <p class="equation">K(I)(x)(y) = I(y) = y</p>
+        <p>The <span class="equation">K function</span> itself can take one argument but when it combines with another
+            function, it becomes a new function and can take THREE arguments. But we don't use it like that. We combine
+            the two functions and create a new function. Only after that, we use it with arguments.</p>
+        <div class="animation-container">
+            <div class="screen">
+                <div class="bird-name code">I</div>
+                <div class="bird idiot">
+                    <div class="pipe">
+                        <div class="left-pipe"></div>
+                        <div class="mid-pipe"></div>
+                        <div class="right-pipe"></div>
+                    </div>
+                </div>
+
+                <div class="input idiot-input code">1</div>
+            </div>
+        </div>
+        <p class="code">let KI = K(I); <span class="comment">new func.</span></p>
+        <p class="code">KI(1)(2) <span class="comment">//returns 2.</span></p>
+        <p>So, the <span class="equation">KI</span> function returns the second one. So, it's a <span
+                class="equation">FALSE</span> function. As I mentioned above, sometimes, we don't need to create another
+            function, we can combine existing functions to create a new one.</p>
     </section>
 </body>
 

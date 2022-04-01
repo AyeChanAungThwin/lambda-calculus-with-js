@@ -8,6 +8,7 @@ let idiotPos = inputPos;
 
 function idiot() {
     let input = document.querySelector('.input');
+    let pipe = document.querySelector('.idiot .pipe');
     input.style.setProperty('--left-to-right', idiotPos);
 
     let idiot = document.querySelector('.idiot');
@@ -19,73 +20,94 @@ function idiot() {
         idiot.style.display = 'block';
     }
     if (idiotPos>=85) input.innerHTML = '';
-    if (idiotPos>=100) idiot.style.display = 'none';
-    if (idiotPos>=120) idiotPos = inputPos;
+    if (idiotPos>=100) pipe.style.visibility = 'hidden';
+    if (idiotPos>=120) {
+        idiotPos = inputPos;
+        pipe.style.visibility = 'visible';
+    }
 }
 
-let kestrelOne = 0;
-let kestrelTwo = 20;
-let top2bot = -50;
-let pauseLeft2Right = false;
-let pauseTop2Bot = false;
-let startB = false;
+let startDelayKestrelAnimation = 0;
+let stopDelayKestrelAnimation = 0;
+let kestrelALR = 0;
+let kestrelATB = 30;
+let kestrelBLR = 20;
+let pauseKestrelALR = false;
+let pauseKestrelBLR = true;
+let pauseKestrelATB = true;
+let kestrelAFinished = false;
+let allFinished = false;
+
+function resetKestrel() {
+    startDelayKestrelAnimation = 0;
+    stopDelayKestrelAnimation = 0;
+    kestrelALR = 0;
+    kestrelATB = 30;
+    kestrelBLR = 20;
+    stopKestrelAnimation = false;
+    pauseKestrelALR = false;
+    pauseKestrelBLR = true;
+    pauseKestrelATB = true;
+    kestrelAFinished = false;
+    allFinished = false;
+}
+
+function hide(html) {
+    html.style.visibility = 'hidden';
+}
+
+function unhide(html) {
+    html.style.visibility = 'visible';
+}
 
 function kestrel() {
-    let input1 = document.querySelector('.kestrel-input-1');
-    input1.style.setProperty('--left-to-right', kestrelOne);
-    input1.style.setProperty('--top-to-bottom', top2bot);
+    let pipeA = document.querySelector('.kestrel-a .pipe');
+    let kestrelA = document.querySelector('.kestrel-a');
+    let kestrelB = document.querySelector('.kestrel-b');
+    let inputA = document.querySelector('.kestrel-input-a');
+    let inputB = document.querySelector('.kestrel-input-b');
 
-    let input2 = document.querySelector('.kestrel-input-2');
-    input2.style.setProperty('--left-to-right', kestrelTwo);
+    inputA.style.setProperty('--left-to-right', kestrelALR);
+    inputA.style.setProperty('--top-to-bottom', kestrelATB);
+    inputB.style.setProperty('--left-to-right', kestrelBLR);
 
-    let layer1 = document.querySelector('.kestrel-layer-1');
-    let layer2 = document.querySelector('.kestrel-layer-2');
-    let arrow = document.querySelector('.arrow-kestrel-1');
+    startDelayKestrelAnimation++;
 
-    if (!pauseLeft2Right) kestrelOne++;
-    if (pauseTop2Bot) top2bot+=10;
+    if (startDelayKestrelAnimation>=20&&pauseKestrelATB&&!pauseKestrelALR) kestrelALR++;
+    if (!pauseKestrelATB) kestrelATB++;
+    if (!pauseKestrelBLR) kestrelBLR++;
+    if (kestrelALR>=48) pauseKestrelALR = true;
 
-    if (kestrelOne<85) {
-        input1.innerHTML = '1';
-        input2.innerHTML = '2';
-        layer1.style.display = 'block';
-        layer2.style.display = 'block';
-        arrow.style.display = 'block';
-    }
-    if (kestrelOne>=47) pauseLeft2Right = true;
-    if (kestrelOne>=95) {
-        input1.innerHTML = '';
-        startB = true;
-        layer1.style.display = 'none';
-        arrow.style.display = 'none';
+    if (pauseKestrelALR) pauseKestrelATB = false;
+    if (kestrelATB>=54) {
+        pauseKestrelATB = true;
+        pauseKestrelALR = false;
     }
 
-    if (kestrelOne>=120) {
-        startB = false;
-        kestrelTwo = 20;
-        input2.innerHTML = '';
+    if (kestrelALR>95) {
+        pauseKestrelALR = true;
+        kestrelAFinished = true;
     }
 
-    if (kestrelOne>=130) {
-        layer2.style.display = 'none';
-    }
-    
-    if (kestrelOne>=150) {
-        kestrelOne = 0;
-        top2bot = -50;
-        pauseLeft2Right = false;
+    if (kestrelAFinished) {
+        hide(pipeA);
+        pauseKestrelBLR = false;
     }
 
-    if (kestrelOne>=47&&pauseLeft2Right) {
-        pauseTop2Bot = true;
-    }
-    if (top2bot>150) {
-        pauseTop2Bot = false;
-        pauseLeft2Right = false;
+    if (kestrelBLR>=49) {
+        // hide(inputB);
+        pauseKestrelBLR = true;
+        allFinished = true;
     }
 
-    if (startB) {
-        kestrelTwo++;
+    if (allFinished) {
+        stopDelayKestrelAnimation++;
+    }
+
+    if (stopDelayKestrelAnimation>=20) {
+        resetKestrel();
+        unhide(pipeA);
+        // unhide(inputB);
     }
 }
 
