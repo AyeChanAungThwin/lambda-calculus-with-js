@@ -28,7 +28,7 @@
 *,
 *::before,
 *::after {
-    bird-sizing: border-bird;
+    box-sizing: border-box;
 }
 
 :root {
@@ -80,7 +80,10 @@
 
 h1 { font-size: var(--fs-h1); }
 h2 { font-size: var(--fs-h2); }
-h3 { font-size: var(--fs-h3); }
+h3 {
+    margin: 0 auto;
+    font-size: var(--fs-h3); 
+}
 h4 { font-size: var(--fs-h4); }
 h5 { font-size: var(--fs-h5); }
 h6 { font-size: var(--fs-h6); }
@@ -97,6 +100,7 @@ section {
 }
 
 p {
+    font-size: var(--fs-h3);
     margin: 0 auto;
     text-indent: 2em;
     line-height: 2rem;
@@ -222,6 +226,9 @@ p {
 }
 
 .bird {
+    --bird-LR: 50;
+    --bird-TB: 50;
+
     --bird-size: 50;
     --bird-ear: 50;
     --bird-throat: 50;
@@ -230,8 +237,8 @@ p {
     width: calc(var(--bird-size) * 1%);
     height: calc(var(--bird-size) * 1%);
 
-    top: 50%;
-    left: 50%;
+    top: calc(var(--bird-TB) * 1%);
+    left: calc(var(--bird-LR) * 1%);
 
     transform: translate(-50%, -50%);
 
@@ -272,6 +279,9 @@ p {
 
 .pipe {
     --left-pipe-length: 50;
+    --mid-pipe-length: calc(var(--bird-throat) - var(--bird-ear));
+    --right-pipe-length: calc(100 - var(--left-pipe-length));
+    --color-pipe: red;
 }
 
 .left-pipe {
@@ -282,25 +292,25 @@ p {
     top: calc(var(--bird-ear) * 1%);
     transform: translateY(calc(var(--bird-ear) * -1%));
 
-    background: black;
+    background: var(--color-pipe);
 }
 
 .mid-pipe {
     position: absolute;
     width: 2px;
-    height: calc((var(--bird-throat) - var(--bird-ear)) * 1%);
+    height: calc(var(--mid-pipe-length) * 1%);
     
     top: calc(var(--bird-ear) * 1%);
 
     left: calc(var(--left-pipe-length) * 1%);
     transform: translateX(-50%);
 
-    background: black;
+    background: var(--color-pipe);
 }
 
 .right-pipe {
     position: absolute;
-    width: calc((100 - var(--left-pipe-length)) * 1%);
+    width: calc(var(--right-pipe-length) * 1%);
     height: 2px;
 
     right: 0;
@@ -308,108 +318,45 @@ p {
     top: calc(var(--bird-throat) * 1%);
     transform: translateY(calc(var(--bird-throat) * -1%));
 
-    background: black;
-}
-
-.kestrel-a {
-    --bird-size: 70;
-    --bird-ear: 30;
-    --bird-throat: 65;
-}
-
-.kestrel-b {
-    top: 60%;
-    --bird-size: 30;
-}
-
-.kestrel-b .pipe {
-    display: none;
+    background: var(--color-pipe);
 }
 
 .input {
-    --left-to-right: 0;
-    --top-to-bottom: 44;
+    --from-top: 0;
+    --from-left: 0;
 
     position: absolute;
 
-    top: calc(var(--top-to-bottom) * 1%);
-    left: calc(var(--left-to-right) * 1%);
+    top: calc((var(--bird-ear) + (var(--from-top))) * 1%);
+    left: calc(var(--from-left) * 1%);
+
+    transform: translate(-50%, -50%);
 
     text-shadow: var(--border-dark);
+
+    z-index: 1;
 }
 
-.kestrel-input-a {
-    --top-to-bottom: 30;
+.sample {
+    --bird-size: 35;
+    --bird-ear: 50;
+    --bird-throat: 50;
 }
 
-.kestrel-input-b {
-    --top-to-bottom: 54;
-    --left-to-right: 20;
+.sample-input-1 {
+    --from-left: -55;
 }
 
-/* .kestrel-layer-1 {
-    width: 70%;
-    height: 70%;
-
-    --bird-ear: 30;
-    --bird-throat: 65;
+.sample-input-2 {
+    --from-left: 155;
 }
 
-.kestrel-layer-2 {
-    top: 60%;
-
-    width: 30%;
-    height: 30%;
+.idiot {
+    --bird-size: 60;
+    --bird-ear: 50;
+    --bird-throat: 50;
 }
 
-.kestrel-input-1 {
-    top: 35%;
+.idiot-input {
+    --from-left: -20;
 }
-
-.kestrel-input-2 {
-    top: 50%;
-    --left-to-right: -20;
-}
-
-.arrow-kestrel-1 {
-    width: 36%;
-    top: 35%;
-
-    transform: translateX(-114px);
-
-    background: black;
-}
-
-.arrow-kestrel-1::before {
-    content:'';
-    display: block;
-    width: 40%;
-    height: 2px;
-
-    transform-origin: right;
-    transform: translateX(68px) rotate(270deg);
-
-    background: black;
-}
-
-.arrow-kestrel-1::after {
-    content:'';
-    display: block;
-    width: 43%;
-    height: 2px;
-
-    transform: translateX(114px) translateY(43px);
-
-    background: black;
-}
-
-.arrow-kestrel-2 {
-    width: 12%;
-    height: 2px;
-
-    top: 60%;
-
-    transform: translateX(190%);
-
-    background: black;
-} */

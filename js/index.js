@@ -1,113 +1,103 @@
+function hide(htmlTag) {
+    htmlTag.style.visibility = 'hidden';
+}
+
+function unhide(htmlTag) {
+    htmlTag.style.visibility = 'visible';
+}
+
+function getPropertyValue(htmlTag, value) {
+    let cs = getComputedStyle(htmlTag);
+    return cs.getPropertyValue(value);
+}
+
+function setPropertyValue(htmlTag, variable, value) {
+    htmlTag.style.setProperty(variable, value);
+}
+
+function getHtmlTag(htmlTag) {
+    return document.querySelector(htmlTag);
+}
+
 function startAnimation() {
-    setInterval(idiot, 20);
-    setInterval(kestrel, 20);
+    setInterval(function() {
+        bird('idiot')
+    }, 20);
 }
 
-const inputPos = 15;
-let idiotPos = inputPos;
+let areInitialized = true;
+let startDelayAnimation = 0;
+let stopDelayAnimation = 0;
+let initL2R = 0;
+let initT2B = 0;
+let L2R = initL2R;
+let T2B = initT2B;
+let pauseL2R = false;
+let pauseT2B = true;
 
-function idiot() {
-    let input = document.querySelector('.input');
-    let pipe = document.querySelector('.idiot .pipe');
-    input.style.setProperty('--left-to-right', idiotPos);
+function resetBird() {
+    startDelayAnimation = 0;
+    stopDelayAnimation = 0;
+    L2R = initL2R;
+    T2B = initT2B;
+    pauseL2R = false;
+    pauseT2B = true;
+}
 
-    let idiot = document.querySelector('.idiot');
+function bird(inputName) {
+    //get html tags
+    let bird = getHtmlTag(`.${inputName}`);
+    let ear = getPropertyValue(bird, "--bird-ear");
+    let throat = getPropertyValue(bird, "--bird-throat");
+    let pipe = getHtmlTag(`.${inputName} .pipe`);
+    let input = getHtmlTag(`.${inputName}-input`);
 
-    idiotPos+=1;
+    //use as const
+    if (areInitialized) {
+        initL2R = +(getPropertyValue(input, '--from-left'));
+        initT2B = +(getPropertyValue(input, '--from-top'));
+        L2R = initL2R;
+        T2B = initT2B;
+        areInitialized = false;
+    }
+
+    //lengths
+    let leftPipeLength = +(getPropertyValue(pipe, "--left-pipe-length"));
+    let midPoint = leftPipeLength;
+    let fromLeft = 0;
+    fromLeft = initL2R;
+    if (initL2R<0) fromLeft = initL2R*-1;
+    let endPoint = 100+fromLeft;
+    let differenceBetweenThroat2Ear = throat-ear;
+
+    //set values
+    setPropertyValue(input, '--from-left', L2R);
+    setPropertyValue(input, '--from-top', T2B);
     
-    if (idiotPos<85) {
-        input.innerHTML = '1';
-        idiot.style.display = 'block';
-    }
-    if (idiotPos>=85) input.innerHTML = '';
-    if (idiotPos>=100) pipe.style.visibility = 'hidden';
-    if (idiotPos>=120) {
-        idiotPos = inputPos;
-        pipe.style.visibility = 'visible';
-    }
-}
+    //start animation
+    startDelayAnimation++;
+    if (startDelayAnimation>=20&&!pauseL2R) L2R+=2;
+    if (!pauseT2B) T2B+=2;
 
-let startDelayKestrelAnimation = 0;
-let stopDelayKestrelAnimation = 0;
-let kestrelALR = 0;
-let kestrelATB = 30;
-let kestrelBLR = 20;
-let pauseKestrelALR = false;
-let pauseKestrelBLR = true;
-let pauseKestrelATB = true;
-let kestrelAFinished = false;
-let allFinished = false;
-
-function resetKestrel() {
-    startDelayKestrelAnimation = 0;
-    stopDelayKestrelAnimation = 0;
-    kestrelALR = 0;
-    kestrelATB = 30;
-    kestrelBLR = 20;
-    stopKestrelAnimation = false;
-    pauseKestrelALR = false;
-    pauseKestrelBLR = true;
-    pauseKestrelATB = true;
-    kestrelAFinished = false;
-    allFinished = false;
-}
-
-function hide(html) {
-    html.style.visibility = 'hidden';
-}
-
-function unhide(html) {
-    html.style.visibility = 'visible';
-}
-
-function kestrel() {
-    let pipeA = document.querySelector('.kestrel-a .pipe');
-    let kestrelA = document.querySelector('.kestrel-a');
-    let kestrelB = document.querySelector('.kestrel-b');
-    let inputA = document.querySelector('.kestrel-input-a');
-    let inputB = document.querySelector('.kestrel-input-b');
-
-    inputA.style.setProperty('--left-to-right', kestrelALR);
-    inputA.style.setProperty('--top-to-bottom', kestrelATB);
-    inputB.style.setProperty('--left-to-right', kestrelBLR);
-
-    startDelayKestrelAnimation++;
-
-    if (startDelayKestrelAnimation>=20&&pauseKestrelATB&&!pauseKestrelALR) kestrelALR++;
-    if (!pauseKestrelATB) kestrelATB++;
-    if (!pauseKestrelBLR) kestrelBLR++;
-    if (kestrelALR>=48) pauseKestrelALR = true;
-
-    if (pauseKestrelALR) pauseKestrelATB = false;
-    if (kestrelATB>=54) {
-        pauseKestrelATB = true;
-        pauseKestrelALR = false;
+    if (L2R>=midPoint) {
+        pauseL2R = !!differenceBetweenThroat2Ear;
+        pauseT2B = !pauseL2R;
     }
 
-    if (kestrelALR>95) {
-        pauseKestrelALR = true;
-        kestrelAFinished = true;
+    let topToBottomLength = differenceBetweenThroat2Ear+initT2B;
+    if (T2B>=topToBottomLength) {
+        pauseT2B = true;
+        pauseL2R = !pauseT2B;
     }
 
-    if (kestrelAFinished) {
-        hide(pipeA);
-        pauseKestrelBLR = false;
+    if (L2R>=endPoint) {
+        hide(pipe);
+        pauseL2R = true;
+        stopDelayAnimation++;
     }
-
-    if (kestrelBLR>=49) {
-        // hide(inputB);
-        pauseKestrelBLR = true;
-        allFinished = true;
-    }
-
-    if (allFinished) {
-        stopDelayKestrelAnimation++;
-    }
-
-    if (stopDelayKestrelAnimation>=20) {
-        resetKestrel();
-        unhide(pipeA);
-        // unhide(inputB);
+    if (stopDelayAnimation>=20) {
+        resetBird();
+        unhide(pipe);
     }
 }
 

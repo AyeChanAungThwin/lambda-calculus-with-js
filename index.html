@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -11,7 +12,6 @@
         <h2 class="main-title"><span>L</span>.<span>a</span>.<span>m</span>.<span>b</span>.<span>d</span>.<span>a</span>
             Calculus</h2>
         <h4 class="main-subtitle">The Origin of Functional Programming</h4>
-        <h4 class="main-subtitle">Author - Aye Chan Aung Thwin</h4>
     </section>
 
     <section class="container what-and-why">
@@ -50,18 +50,28 @@
         <h3 class="title">Birds</h3>
         <p>We represent a function with a bird. Each bird is a function. Each function can have one or more functions or
             arguments inside it and we called them layers.</p>
+        <p>Half-circle on the left of the box represents a bird's ear and the right one represents its throat. The
+            dotted box encloses the red solid line and one box represents one layer. The solid line is a pipe which
+            shows
+            the direction of
+            flow the information from ear to throat. Normally, it goes from left to right. We don't use arrow head
+            except to indicate reverse flow. <span class="fyi">FYI, ear to the throat is connected through a tube! The
+                Eustachian tube is a small passageway that connects your throat to your middle ear.</span></p>
 
         <div class="animation-container">
             <div class="screen">
                 <div class="bird-name code">Bird</div>
-                <div class="bird">
+                <div class="bird sample">
                     <div class="pipe">
                         <div class="left-pipe"></div>
                         <div class="mid-pipe"></div>
                         <div class="right-pipe"></div>
                     </div>
+                    <h3 class="input sample-input-1 code">ear</h3>
+                    <h3 class="input sample-input-2 code">throat</h3>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -70,12 +80,6 @@
         <p>This is the one layer bird. It takes only one argument and return it. It seems to have no intelligence at
             all. That's why we called it, "Idiot" or "Identity." And we present it with "I."
         </p>
-        <p>Half-circle on the left of the box represents a bird's ear and the right one represents its throat. The
-            dotted box encloses the solid line and one box represents one layer. The solid line is a pipe which shows
-            the direction of
-            flow the information from ear to throat. Normally, it goes from left to right. We don't use arrow head
-            except to indicate reverse flow. <span class="fyi">FYI, ear to the throat is connected by a canal! The
-                Eustachian tube is a small passageway that connects your throat to your middle ear.</span></p>
 
         <div class="animation-container">
             <div class="screen">
@@ -86,9 +90,8 @@
                         <div class="mid-pipe"></div>
                         <div class="right-pipe"></div>
                     </div>
+                    <h3 class="input idiot-input code">a</h3>
                 </div>
-
-                <div class="input idiot-input code">1</div>
             </div>
         </div>
         <p>Just like <span class="equation">f(x)=x</span>, this one is <span class="equation">I(a)=a</span>. <span
@@ -120,6 +123,29 @@
                         <div class="mid-pipe"></div>
                         <div class="right-pipe"></div>
                     </div>
+                    <h3 class="input kestrel-input-a code">a</h3>
+                </div>
+
+                <div class="bird kestrel-b">
+                    <div class="pipe">
+                        <div class="left-pipe"></div>
+                        <div class="mid-pipe"></div>
+                        <div class="right-pipe"></div>
+                    </div>
+                    <h3 class="input kestrel-input-b code">b</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="animation-container">
+            <div class="screen">
+                <div class="bird-name kestrel code">K</div>
+                <div class="bird kestrel-a">
+                    <div class="pipe">
+                        <div class="left-pipe"></div>
+                        <div class="mid-pipe"></div>
+                        <div class="right-pipe"></div>
+                    </div>
                 </div>
 
                 <div class="bird kestrel-b">
@@ -133,21 +159,8 @@
                 <div class="input kestrel-input-a code">a</div>
                 <div class="input kestrel-input-b code">b</div>
             </div>
-        </div>
-
-        <!-- <div class="animation-container">
-            <div class="screen">
-                <div class="bird-name code">K</div>
-                <div class="bird kestrel-layer-1">
-                </div>
-                <div class="bird kestrel-layer-2">
-                </div>
-                <div class="arrow arrow-kestrel-1"></div>
-                <div class="arrow arrow-kestrel-2"></div>
-                <div class="input kestrel-input-1 code">a</div>
-                <div class="input kestrel-input-2 code">b</div>
-            </div>
         </div> -->
+
         <p>You can try it, with the syntax of JavaScript's arrow function in console of a browser.
         </p>
         <p class="code">let K = a => b => a;</p>
