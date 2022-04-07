@@ -210,12 +210,16 @@ p {
 }
 
 .screen {
+    --screen-color: #03414b; 
+
     position: relative;
 
     width: 320px;
     height: 180px;
     border: 2px solid black;
-    background: #03414b;
+    background: var(--screen-color);
+
+    overflow: hidden;
 }
 
 .screen .bird-name {
@@ -281,6 +285,13 @@ p {
     --left-pipe-length: 50;
     --mid-pipe-length: calc(var(--bird-throat) - var(--bird-ear));
     --right-pipe-length: calc(100 - var(--left-pipe-length));
+    
+    --hide-left-pipe: 0;
+    --hide-mid-pipe: 0;
+    --hide-right-pipe: 0;
+
+    --hide-pipes-color: var(--screen-color);
+
     --color-pipe: red;
 }
 
@@ -293,6 +304,16 @@ p {
     transform: translateY(calc(var(--bird-ear) * -1%));
 
     background: var(--color-pipe);
+}
+
+.left-pipe::after {
+    content:'';
+    position: absolute;
+
+    width: calc(var(--hide-left-pipe) * 1%);
+    height: 100%;
+
+    background: var(--hide-pipes-color);
 }
 
 .mid-pipe {
@@ -308,6 +329,16 @@ p {
     background: var(--color-pipe);
 }
 
+.mid-pipe::after {
+    content:'';
+    position: absolute;
+
+    width: 100%;
+    height: calc(var(--hide-mid-pipe) * 1%);
+
+    background: var(--hide-pipes-color);
+}
+
 .right-pipe {
     position: absolute;
     width: calc(var(--right-pipe-length) * 1%);
@@ -319,6 +350,16 @@ p {
     transform: translateY(calc(var(--bird-throat) * -1%));
 
     background: var(--color-pipe);
+}
+
+.right-pipe::after {
+    content:'';
+    position: absolute;
+
+    width: calc(var(--hide-right-pipe) * 1%);
+    height: 100%;
+
+    background: var(--hide-pipes-color);
 }
 
 .input {
@@ -338,6 +379,8 @@ p {
 }
 
 .sample {
+    --bird-LR: 47;
+
     --bird-size: 35;
     --bird-ear: 50;
     --bird-throat: 50;
@@ -348,7 +391,7 @@ p {
 }
 
 .sample-input-2 {
-    --from-left: 155;
+    --from-left: 160;
 }
 
 .idiot {
@@ -382,4 +425,32 @@ p {
 
 .kestrel-b .pipe {
     visibility: hidden;
+}
+
+.kestrel1-a {
+    --bird-LR: 60;
+
+    --bird-size: 55;
+    --bird-ear: 20;
+    --bird-throat: 60;
+}
+
+.kestrel1-a-input {
+    --from-top: -30;
+    --from-left: -40;
+}
+
+.kestrel1-b {
+    --bird-LR: 60;
+
+    --bird-TB: 55;
+    --bird-size: 35;
+}
+
+.kestrel1-b .pipe {
+    visibility: hidden;
+}
+
+.idiot1 {
+    --bird-size: 15;
 }
