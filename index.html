@@ -100,8 +100,8 @@
             it, with the syntax of JavaScript's arrow function in console of a browser.
         </p>
         <p class="code">let I = a => a;</p>
-        <p class="code">I(0) <span class="comment">//will return 0.</span></p>
-        <p class="code">I(1) <span class="comment">//will return 1.</span></p>
+        <p class="code">I(0) <span class="comment">//returns 0.</span></p>
+        <p class="code">I(1) <span class="comment">//returns 1.</span></p>
         <p>
 
         </p>
@@ -149,7 +149,7 @@
             let K3 = K(3);
         </p>
         <p class="code">
-            K3 <span class="comment">//will return 3.</span>
+            K3 <span class="comment">//returns 3.</span>
         </p>
         <p>Forget about its syntax and look at the sequence that executes. Does it look familiar to you?</p>
     </section>
@@ -190,7 +190,7 @@
                         <div class="mid-pipe"></div>
                         <div class="right-pipe"></div>
                     </div>
-                    
+
                     <div class="bird idiot1 input kestrel1-a-input">
                         <div class="bird-name idiot1 code">I</div>
                         <div class="pipe">
@@ -213,25 +213,27 @@
             </div>
         </div>
 
+        <p>When an input is a function, it breaks the layer of a bird once the input function's throat hits the ear of the bird. And the input function will go until its throat touches the end of the innermost layer's throat. But the input function will never get out of the innermost layer's throat. Only the argument gets out of the throat.</p>
+
         <div class="animation-container">
             <div class="screen">
-                <div class="bird kestrel2-a">
-                    <div class="bird-name kestrel2-a code">KI</div>
+                <div class="bird kite-a">
+                    <div class="bird-name kite-a code">KI</div>
                     <div class="pipe">
                         <div class="left-pipe"></div>
                         <div class="mid-pipe"></div>
                         <div class="right-pipe"></div>
                     </div>
-                    <h3 class="input kestrel2-a-input code">a</h3>
+                    <h3 class="input kite-a-input code">a</h3>
                 </div>
 
-                <div class="bird idiot2">
+                <div class="bird kite-b">
                     <div class="pipe">
                         <div class="left-pipe"></div>
                         <div class="mid-pipe"></div>
                         <div class="right-pipe"></div>
                     </div>
-                    <h3 class="input idiot2-input code">b</h3>
+                    <h3 class="input kite-b-input code">b</h3>
                 </div>
             </div>
         </div>
@@ -240,6 +242,26 @@
         <p>So, the <span class="equation">KI</span> function returns the second one. So, it's a <span
                 class="equation">FALSE</span> function. As I mentioned above, sometimes, we don't need to create another
             function, we can combine existing functions to create a new one.</p>
+    </section>
+
+    <section class="container function">
+        <h3 class="title">Cardinal</h3>
+        <p>This is the three layer bird. It takes a function with two arguments and flip them. I assume you understand
+            how the bird works and I won't use animation schema so that I could speed this up.
+        </p>
+        <p class="code">let C = f => a => b => f(b)(a);</p>
+        <p class="code">C(K)(1)(2) <span class="comment">//returns 2.</span></p>
+        <p class="code">C(KI)(1)(2) <span class="comment">//returns 1.</span></p>
+        <p>
+            So, it just swap two arguments of a function. <span class="equation">K</span> gives the second one and <span class="equation">KI</span> gives the first one now. <span class="equation">K</span> becomes <span class="equation">KI</span> and <span class="equation">KI</span> becomes <span class="equation">K</span>.
+        </p>
+        <p class="code">
+            C(K)(1)(2) == KI(1)(2)
+        </p>
+        <p class="code">
+            C(KI)(1)(2) == K(1)(2)
+        </p>
+        <p>That's how the functions meet extensional equality.</p>
     </section>
 </body>
 

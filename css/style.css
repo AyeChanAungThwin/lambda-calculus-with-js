@@ -237,6 +237,8 @@ p {
     --bird-ear: 50;
     --bird-throat: 50;
 
+    --is-hidden: visible;
+
     position: absolute;
     width: calc(var(--bird-size) * 1%);
     height: calc(var(--bird-size) * 1%);
@@ -264,6 +266,8 @@ p {
     border-radius: 50px 0 0 50px;
 
     background: black;
+
+    visibility: var(--is-hidden);
 }
 
 .bird::after {
@@ -279,6 +283,8 @@ p {
     border-radius: 0 50px 50px 0;
 
     background: black;
+
+    visibility: var(--is-hidden);
 }
 
 .bird-name {
@@ -370,6 +376,7 @@ p {
     --from-top: 0;
     --from-left: 0;
     --end-point: 0;
+    --hide-until: 0;
 
     position: absolute;
 
@@ -438,6 +445,8 @@ p {
     --bird-size: 55;
     --bird-ear: 20;
     --bird-throat: 60;
+    
+    z-index: 1;
 }
 
 /* .kestrel1-a .pipe {
@@ -452,7 +461,7 @@ p {
 .kestrel1-b {
     --bird-LR: 60;
 
-    --bird-TB: 56;
+    --bird-TB: 55.5;
     --bird-size: 35;
 }
 
@@ -468,23 +477,24 @@ p {
     content:'';
 }
 
-.kestrel2-a {
+.kite-a {
     --bird-size: 70;
 }
 
-.kestrel2-a-input {
+.kite-a-input {
     --from-left: -17;
 }
 
-.kestrel2-a .pipe .left-pipe {
+.kite-a .pipe .left-pipe {
     visibility: hidden;
 }
 
-.idiot2 {
+.kite-b {
     --bird-size: 30;
 }
 
-.idiot2-input {
+.kite-b-input {
     --from-left: -40;
-    --end-point: 0;
+    --end-point: 210;
+    --hide-until: 172;
 }
