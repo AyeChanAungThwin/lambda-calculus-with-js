@@ -41,6 +41,10 @@ function Bird(birdName) {
     this.hideMidPipe = 0;
     this.hideRightPipe = 0;
 
+    // this.isOneLayerBird = false;
+    this.isTwoLayerBird = false;
+    this.isKite = false;
+
     this.areInitialized = false;
     this.startDelayAnimation = 0;
     this.stopDelayAnimation = 0;
@@ -62,15 +66,60 @@ function Bird(birdName) {
         this.hideLeftPipe = 0;
         this.hideMidPipe = 0;
         this.hideRightPipe = 0;
+
+        // this.isOneLayerBird = false;
+        this.isTwoLayerBird = false;
+        this.isKite = false;
     };
 
     this.getBird = function() {
+
+        // if (birdName.toUpperCase().includes('IDIOT')) isOneLayerBird = true;
+        if (birdName.toUpperCase().includes('KESTREL1')) {
+            this.isCreatingKite = true;
+            this.isTwoLayerBird = true;
+        }
+
+        let nameOfBird = birdName;
+        if (this.isTwoLayerBird) {
+            nameOfBird = birdName.slice(0, -1);
+        }
+
+        let birdName1 = nameOfBird+'a';
+        if (!this.isTwoLayerBird) birdName1 = birdName;
+        let birdName2 = nameOfBird+'b';
+
         //get html tags
-        let bird = getHtmlTag(`.${birdName}`);
-        let ear = getPropertyValue(bird, "--bird-ear");
-        let throat = getPropertyValue(bird, "--bird-throat");
-        let pipe = getHtmlTag(`.${birdName} .pipe`);
-        let input = getHtmlTag(`.${birdName}-input`);
+        let bird1 = getHtmlTag(`.${birdName1}`);
+        let ear = getPropertyValue(bird1, "--bird-ear");
+        let throat = getPropertyValue(bird1, "--bird-throat");
+        let pipe1 = getHtmlTag(`.${birdName1} .pipe`);
+        let rightPipe1 = getHtmlTag(`.${birdName1} .pipe .right-pipe`);
+        let input = getHtmlTag(`.${birdName1}-input`);
+
+        let bird2 = null;
+        let pipe2 = null;
+        let leftPipe2 = null;
+        let rightPipe2 = null;
+        let idiot1 = null;
+        let kestrel1 = null;
+        let kite = null;
+
+        if (this.isTwoLayerBird) {
+            bird2 = getHtmlTag(`.${birdName2}`);
+            pipe2 = getHtmlTag(`.${birdName2} .pipe`);
+            leftPipe2 = getHtmlTag(`.${birdName2} .pipe .left-pipe`);
+            rightPipe2 = getHtmlTag(`.${birdName2} .pipe .left-pipe`);
+        }
+
+        if (this.isCreatingKite) {
+            kite = getHtmlTag(`.kite-demo`);
+            idiot1 = getHtmlTag(`.bird-name.idiot1`);
+            kestrel1 = getHtmlTag(`.bird-name.kestrel1-a`);
+
+            idiot1.innerHTML = 'I';
+            kestrel1.innerHTML = 'K';
+        }
 
         //use as const
         if (!this.areInitialized) {
@@ -86,7 +135,7 @@ function Bird(birdName) {
         }
 
         //lengths
-        let leftPipeLength = +(getPropertyValue(pipe, "--left-pipe-length"));
+        let leftPipeLength = +(getPropertyValue(pipe1, "--left-pipe-length"));
         let midPoint = leftPipeLength;
         let fromLeft = 0;
         fromLeft = this.initL2R;
@@ -97,9 +146,9 @@ function Bird(birdName) {
         //set values
         setPropertyValue(input, '--from-left', this.L2R);
         setPropertyValue(input, '--from-top', this.T2B);
-        setPropertyValue(pipe, '--hide-left-pipe', this.hideLeftPipe);
-        setPropertyValue(pipe, '--hide-mid-pipe', this.hideMidPipe);
-        setPropertyValue(pipe, '--hide-right-pipe', this.hideRightPipe);
+        setPropertyValue(pipe1, '--hide-left-pipe', this.hideLeftPipe);
+        setPropertyValue(pipe1, '--hide-mid-pipe', this.hideMidPipe);
+        setPropertyValue(pipe1, '--hide-right-pipe', this.hideRightPipe);
 
         //start animation
         this.startDelayAnimation++;
@@ -108,10 +157,10 @@ function Bird(birdName) {
 
         //hide left pipe
         if (this.L2R>=this.initL2R&&this.L2R<=midPoint+1) {
-            this.hideLeftPipe = this.L2R*2;
+            this.hideLeftPipe = this.L2R*(100/leftPipeLength);
         }
 
-        //100/40 * ?
+        //hide mid pipe
         if (this.T2B>=this.initT2B&&this.T2B<=differenceBetweenThroat2Ear) {
             let startPoint = this.T2B-(this.initT2B);
             this.hideMidPipe = startPoint*(100/differenceBetweenThroat2Ear);
@@ -133,14 +182,31 @@ function Bird(birdName) {
             this.pauseL2R = !this.pauseT2B;
         }
 
+        if (this.isCreatingKite&&this.T2B>=topToBottomLength) {
+            this.pauseL2R = true;
+            this.stopDelayAnimation++;
+            hide(rightPipe1);
+            unhide(pipe2);
+            hide(leftPipe2);
+
+            kite.innerHTML = 'KI';
+            idiot1.innerHTML = '';
+            kestrel1.innerHTML = '';
+        }
+
         if (this.L2R >= endPoint) {
-            // hide(pipe);
             this.pauseL2R = true;
             this.stopDelayAnimation++;
         }
-        if (this.stopDelayAnimation >= 20) {
+        if (this.stopDelayAnimation >= 30) {
             this.resetBird();
-            // unhide(pipe);
+            unhide(rightPipe1);
+            if (this.isCreatingKite) {
+                hide(pipe2);
+                kite.innerHTML = '';
+                // idiot1.innerHTML = 'I';
+                // kestrel1.innerHTML = 'K';
+            }
         }
     };
 }

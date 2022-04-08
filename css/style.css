@@ -281,6 +281,10 @@ p {
     background: black;
 }
 
+.bird-name {
+    top: -22px;
+}
+
 .pipe {
     --left-pipe-length: 50;
     --mid-pipe-length: calc(var(--bird-throat) - var(--bird-ear));
@@ -365,6 +369,7 @@ p {
 .input {
     --from-top: 0;
     --from-left: 0;
+    --end-point: 0;
 
     position: absolute;
 
@@ -375,7 +380,7 @@ p {
 
     text-shadow: var(--border-dark);
 
-    z-index: 10;
+    /* z-index: 10; */
 }
 
 .sample {
@@ -435,15 +440,19 @@ p {
     --bird-throat: 60;
 }
 
+/* .kestrel1-a .pipe {
+    --left-pipe-length: 40;
+} */
+
 .kestrel1-a-input {
     --from-top: -30;
-    --from-left: -40;
+    --from-left: -39;
 }
 
 .kestrel1-b {
     --bird-LR: 60;
 
-    --bird-TB: 55;
+    --bird-TB: 56;
     --bird-size: 35;
 }
 
@@ -453,4 +462,29 @@ p {
 
 .idiot1 {
     --bird-size: 15;
+}
+
+.bird-name.kite {
+    content:'';
+}
+
+.kestrel2-a {
+    --bird-size: 70;
+}
+
+.kestrel2-a-input {
+    --from-left: -17;
+}
+
+.kestrel2-a .pipe .left-pipe {
+    visibility: hidden;
+}
+
+.idiot2 {
+    --bird-size: 30;
+}
+
+.idiot2-input {
+    --from-left: -40;
+    --end-point: 0;
 }
