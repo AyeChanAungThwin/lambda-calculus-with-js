@@ -4,7 +4,8 @@
 <head>
     <title>Lambda Calculus</title>
     <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/index.js"></script>
+    <script defer src="js/animation.js"></script>
+    <script defer src="js/lambda-calculus-with-js.js"></script>
 </head>
 
 <body>
@@ -150,12 +151,15 @@
         <p class="code">K(1)(2) <span class="comment">//will return 1.</span></p>
         <p>As you can see, Kestrel always return the first thing and so you can neglect the second one. Kestrel can be
             used as a constant. For example, <span class="equation">K(3)</span> will always gives you back <span
-                class="equation">3</span>. That's called the constant. And we can create like this.</p>
+                class="equation">3</span> regardless of the second one. That's called the constant. And we can create like this.</p>
         <p class="code">
             let K3 = K(3);
         </p>
         <p class="code">
-            K3 <span class="comment">//returns 3.</span>
+            K3(0) <span class="comment">//returns 3.</span>
+        </p>
+        <p class="code">
+            K3(1) <span class="comment">//returns 3.</span>
         </p>
         <p>Forget about its syntax and look at the sequence that executes. Does it look familiar to you?</p>
     </section>
