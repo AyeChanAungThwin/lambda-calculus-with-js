@@ -260,7 +260,7 @@ p {
     height: 50px;
 
     top: calc(var(--bird-ear) * 1%);
-    left: -14px;
+    left: -12px;
 
     transform: translate(-50%, -50%);
     border-radius: 50px 0 0 50px;

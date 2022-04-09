@@ -40,7 +40,7 @@
         <p>A function is a black box where you can't see what's inside. If you wanna know if two functions do the same
             thing, you have to put something in it and see if they give us the same result. Let's say there are two
             functions; <span class="equation">f(x)=2x</span>, and <span class="equation">g(x)=x+x</span>, you can't know
-            if f(x) is equal g(x) without putting a value in it.</p>
+            if f(x) is equal g(x) without putting a value in it. This is called <span class="fyi">Extensional Equality</span>.</p>
         <p><span class="equation">f(x)=2x</span>, <span class="equation">f(2)=2*2=4</span></p>
         <p><span class="equation">g(x)=x+x</span>, <span class="equation">g(2)=2+2=4</span></p>
         <p>Hence, <span class="equation">f(2)</span> is equal to <span class="equation">g(2)</span>.</p>
@@ -138,6 +138,12 @@
         </div>
 
         <p>You can try it, with the syntax of JavaScript's arrow function in console of a browser.
+        <pre class="comment">
+        let K = function(a) {
+            return function(b) {
+                return a;
+            }
+        }</pre>
         </p>
         <p class="code">let K = a => b => a;</p>
         <p class="code">K(0)(1) <span class="comment">//will return 0.</span></p>
@@ -213,7 +219,10 @@
             </div>
         </div>
 
-        <p>When an input is a function, it breaks the layer of a bird once the input function's throat hits the ear of the bird. And the input function will go until its throat touches the end of the innermost layer's throat. But the input function will never get out of the innermost layer's throat. Only the argument gets out of the throat.</p>
+        <p>When an input is a function, it breaks the layer of a bird once the input function's throat hits the ear of
+            the bird. And the input function will go until its throat touches the end of the innermost layer's throat.
+            But the input function will never get out of the innermost layer's throat. Only the argument gets out of the
+            throat.</p>
 
         <div class="animation-container">
             <div class="screen">
@@ -237,11 +246,34 @@
                 </div>
             </div>
         </div>
-        <p class="code">let KI = K(I); <span class="comment">new func.</span></p>
+        <p class="code">let KI = K(I); <span class="comment">//new func.</span></p>
         <p class="code">KI(1)(2) <span class="comment">//returns 2.</span></p>
         <p>So, the <span class="equation">KI</span> function returns the second one. So, it's a <span
                 class="equation">FALSE</span> function. As I mentioned above, sometimes, we don't need to create another
-            function, we can combine existing functions to create a new one.</p>
+            function, we can combine existing functions to create a new one. Let's reassign <span
+                class="equation">F</span> with <span class="equation">KI</span>.</p>
+        <p class="code">F = KI;</p>
+    </section>
+
+    <section class="container function">
+        <h3 class="title">Creating toBoolean Function</h3>
+        <p>
+            When we check <span class="equation">T</span> in the console, It will give back <span class="equation">K(a)</span> that returns the first thing. It will only return the function because we didn't put some arguments. So, we are going to make it readable in the syntax of JavaScript.
+        </p>
+        <p class="code">let toBoolean = f => f(true)(false);</p>
+        <p>
+            <span class="equation">toBoolean function</span> takes a function and applies two arguments; true and false. If the function is <span class="equation">K</span>, it will return the first one i.e., true.
+        </p>
+        <p class="code">toBoolean(K) <span class="comment">//returns true.</span></p>
+        <p class="code">toBoolean(KI) <span class="comment">//returns false.</span></p>
+        <p>
+            Remember that <span class="equation">K</span> is assigned to <span class="equation">T</span> and <span class="equation">KI</span> is assigned to <span class="equation">F</span>.
+        </p>
+        <p class="code">toBoolean(T) <span class="comment">//returns true.</span></p>
+        <p class="code">toBoolean(F) <span class="comment">//returns false.</span></p>
+        <p class="fyi">
+            Don't lose the point. Functional Programming expresses everything with a function. We're just created "toBoolean function" only to check if it works in high-level perspective.
+        </p>
     </section>
 
     <section class="container function">
@@ -253,7 +285,9 @@
         <p class="code">C(K)(1)(2) <span class="comment">//returns 2.</span></p>
         <p class="code">C(KI)(1)(2) <span class="comment">//returns 1.</span></p>
         <p>
-            So, it just swap two arguments of a function. <span class="equation">K</span> gives the second one and <span class="equation">KI</span> gives the first one now. <span class="equation">K</span> becomes <span class="equation">KI</span> and <span class="equation">KI</span> becomes <span class="equation">K</span>.
+            So, it just swap two arguments of a function. <span class="equation">K</span> gives the second one and <span
+                class="equation">KI</span> gives the first one now. <span class="equation">K</span> becomes <span
+                class="equation">KI</span> and <span class="equation">KI</span> becomes <span class="equation">K</span>.
         </p>
         <p class="code">
             C(K)(1)(2) == KI(1)(2)
@@ -261,7 +295,35 @@
         <p class="code">
             C(KI)(1)(2) == K(1)(2)
         </p>
-        <p>That's how the functions meet extensional equality.</p>
+        <p>That's how the functions meet extensional equality. <span class="equation">Cardinal</span> reverses the <span class="equation">True</span> and <span class="equation">False</span> functions. So, <span class="equation">Cardinal</span> is just a <span class="equation">NOT</span> function.</p>
+        <p class="code">
+            let NOT = C;
+        </p>
+        <p class="code">
+            NOT(T)<span class="comment">//returns C(a)</span>
+        </p>
+        <p class="code">
+            NOT(F)<span class="comment">//returns C(a)</span>
+        </p>
+        <p>Sometimes, the result doesn't seem to be clear like this. We need to put some values and check it.</p>
+        <p class="code">
+            NOT(T)(true)(false) <span class="comment">//returns false.</span>
+        </p>
+        <p class="code">
+            NOT(F)(true)(false) <span class="comment">//returns true.</span>
+        </p>
+        <p>
+            Instead of checking the result like this from above, it would be better in readability if we use some function like the following.
+        </p>
+        <p class="code">
+            toBoolean(NOT(T)) <span class="comment">//returns false.</span>
+        </p>
+        <p class="code">
+            toBoolean(NOT(F)) <span class="comment">//returns true.</span>
+        </p>
+        <p>
+            That's why we should to use some sophisticated functions to check the result.
+        </p>
     </section>
 </body>
 
