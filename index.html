@@ -300,6 +300,10 @@
             C(KI)(1)(2) == K(1)(2)
         </p>
         <p>That's how the functions meet extensional equality. <span class="equation">Cardinal</span> reverses the <span class="equation">True</span> and <span class="equation">False</span> functions. So, <span class="equation">Cardinal</span> is just a <span class="equation">NOT</span> function.</p>
+    </section>
+
+    <section class="container function">
+        <h3 class="title">NOT function</h3>
         <p class="code">
             let NOT = C;
         </p>
@@ -327,6 +331,49 @@
         </p>
         <p>
             That's why we should to use some sophisticated functions to check the result.
+        </p>
+    </section>
+
+    <section class="container function">
+        <h3 class="title">AND function</h3>
+        <p>How does it work? If all are <span class="equation">TRUE</span>, returns <span class="equation">TRUE</span>. If one of them is <span class="equation">FALSE</span>, returns <span class="equation">FALSE</span>.</p>
+
+        <p class="fyi">let AND = p => q => p??</p>
+        <p>If p is true, we know p is K. K will return the first thing. So, we just need to check the other one. So, we know what to return. It is q.</p>
+
+        <p class="fyi">let AND = p => q => p(q)?</p>
+        <p>If p is false, we know p is KI. KI will return the second thing. One of them is false, then returns false.</p>
+
+        <p class="fyi">let AND = p => q => p(q)(F);</p>
+        <p>Or we can simplify it and return p that is already false.</p>
+
+        <p class="code">let AND = p => q => p(q)(p);</p>
+
+        <p>Note: T = K and F = KI.</p>
+        <p class="fyi">AND(p)(q) = p(q)(p)</p>
+        <p class="fyi">AND(F)(F) = F(F)(F) = KI(KI)(KI) = KI = F</p>
+        <p class="fyi">AND(F)(T) = F(T)(F) = KI(K)(KI) = KI = F</p>
+        <p class="fyi">AND(T)(F) = T(F)(T) = K(KI)(K) = KI = F</p>
+        <p class="fyi">AND(T)(T) = T(T)(T) = K(K)(K) = K = T</p>
+
+        <p class="code">AND(F)(F)</p>
+        <p class="code">AND(F)(T)</p>
+        <p class="code">AND(T)(F)</p>
+        <p class="code">AND(T)(T)</p>
+
+        <p>Those codes above will only returns a function. And so, we will have to use <span class="equation">toBoolean Function</span> to check the result.</p>
+
+        <p class="code">
+            toBoolean(AND(F)(F))
+        </p>
+        <p class="code">
+            toBoolean(AND(F)(T))
+        </p>
+        <p class="code">
+            toBoolean(AND(T)(F))
+        </p>
+        <p class="code">
+            toBoolean(AND(T)(T))
         </p>
     </section>
 </body>
