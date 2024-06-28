@@ -59,3 +59,27 @@ console.log('toBoolean(AND(F)(T))', toBoolean(AND(F)(T)));
 console.log('toBoolean(AND(T)(F))', toBoolean(AND(T)(F)));
 console.log('toBoolean(AND(T)(T))', toBoolean(AND(T)(T)));
 console.log();
+
+let OR = p => q => p(p)(q);
+console.log('let OR = p => q => p(p)(q);');
+console.log('OR(F)(F)', OR(F)(F));
+console.log('OR(F)(T)', OR(F)(T));
+console.log('OR(T)(F)', OR(T)(F));
+console.log('OR(T)(T)', OR(T)(T));
+console.log('toBoolean(OR(F)(F))', toBoolean(OR(F)(F)));
+console.log('toBoolean(OR(F)(T))', toBoolean(OR(F)(T)));
+console.log('toBoolean(OR(T)(F))', toBoolean(OR(T)(F)));
+console.log('toBoolean(OR(T)(T))', toBoolean(OR(T)(T)));
+console.log();
+
+let BEQ = p => q => p(q)(NOT(q));
+console.log('let BEQ = p => q => p(q)(NOT(q));');
+console.log('BEQ(F)(F)', BEQ(F)(F));
+console.log('BEQ(F)(T)', BEQ(F)(T));
+console.log('BEQ(T)(F)', BEQ(T)(F));
+console.log('BEQ(T)(T)', BEQ(T)(T));
+console.log('toBoolean(BEQ(F)(F))', toBoolean(BEQ(F)(F)));
+console.log('toBoolean(BEQ(F)(T))', toBoolean(BEQ(F)(T)));
+console.log('toBoolean(BEQ(T)(F))', toBoolean(BEQ(T)(F)));
+console.log('toBoolean(BEQ(T)(T))', toBoolean(BEQ(T)(T)));
+console.log();
